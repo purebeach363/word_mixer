@@ -1,23 +1,27 @@
 import random
-import pathlib
+from pathlib import Path
+import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "data"
 
 def get_files():
-    path = pathlib.Path("data")
-    files = []
-    for file in path.glob('*'):
-        if file.is_file():
-            files.append(file.name.removesuffix(".md"))
-    return files
+    return [f.stem for f in DATA_DIR.glob("*.md") if f.is_file()]
 
 def read_words(file_name):
-    file_path = pathlib.Path("data") / f"{file_name}.md"
+    file_path = DATA_DIR / f"{file_name}.md"
     word_map = {}
+
     with open(file_path, "r", encoding="utf-8") as f:
         for line in f:
             if ":" in line:
                 word, meaning = line.split(":", 1)
                 word_map[word.strip()] = meaning.strip()
+
     return word_map
+
+def clear_console():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def main():
     while True:
@@ -48,6 +52,7 @@ def main():
             # ------------------ Stage 2 ------------------
             if input("\n🔀 Ready for Stage 2 (Scrambled words)? (y/n): ").lower() == 'y':
                 guessed = 0
+                clear_console()
 
                 for word, meaning in word_map.items():
                     clean_word = word.split(". ", 1)[-1] if ". " in word else word
@@ -69,6 +74,7 @@ def main():
                 # ------------------ Stage 3 ------------------
                 if input("\n🧠 Ready for Stage 3 (Meaning → Word)? (y/n): ").lower() == 'y':
                     guessed = 0
+                    clear_console()
 
                     items = list(word_map.items())
                     random.shuffle(items)
