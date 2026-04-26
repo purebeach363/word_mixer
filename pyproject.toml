@@ -1,0 +1,9 @@
+[project]
+name = "word_mixer"
+version = "0.1.0"
+description = "CLI vocabulary trainer from markdown files"
+authors = [{ name = "purebeach363" }]
+requires-python = ">=3.10"
+
+[project.scripts]
+wordmixer = "word_mixer.main:main"
