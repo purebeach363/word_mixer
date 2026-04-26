@@ -7,3 +7,6 @@ requires-python = ">=3.10"
 
 [project.scripts]
 wordmixer = "word_mixer.main:main"
+
+[tool.setuptools.packages.find]
+include = ["word_mixer"]
