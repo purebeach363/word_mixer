@@ -8,8 +8,8 @@ CLI script to practice vocabulary from markdown files.
 
 ## Install
 
-git clone https://github.com/yourname/vocab-trainer.git
-cd vocab-trainer
+git clone https://github.com/purebeach363/word_mixer.git
+cd word_mixer
 pip install .
 
 ## Run
